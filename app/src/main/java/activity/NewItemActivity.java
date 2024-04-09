@@ -1,8 +1,10 @@
-package costa.omena.guilherme.lista;
+package activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import costa.omena.guilherme.lista.R;
 
 public class NewItemActivity extends AppCompatActivity {
 
