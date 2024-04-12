@@ -1,4 +1,4 @@
-package activity;
+package costa.omena.guilherme.activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,8 +8,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import costa.omena.guilherme.lista.R;
 
@@ -35,6 +38,50 @@ public class NewItemActivity extends AppCompatActivity {
                 // Selecionando somente as imagens
                 photoPickerIntent.setType("image/*");
                 startActivityForResult(photoPickerIntent, PHOTO_PICKER_REQUEST);
+            }
+        });
+
+        // Obtem botao que adiciona o item
+        Button btnAddItem =  findViewById(R.id.btnAddItem);
+        btnAddItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // Se nao for selecionada uma imagem
+                if (photoSelected == null){
+                    Toast.makeText(NewItemActivity.this, "É necessário selecionar uma imagem!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                // Obtem os dados que o usuario digitou
+                EditText etTitle = findViewById(R.id.etTitle);
+                String title = etTitle.getText().toString();
+
+                if (title.isEmpty()){
+                    Toast.makeText(NewItemActivity.this, "É necessário inserir um título", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                EditText etDesc = findViewById(R.id.etDesc);
+                String description = etDesc.getText().toString();
+
+                if (description.isEmpty()){
+                    Toast.makeText(NewItemActivity.this, "É necessário inserir uma descrição", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                // Intencao para voltar a outra tela
+                Intent i = new Intent();
+
+                // Setando os dados
+                i.setData(photoSelected);
+                i.putExtra("title", title);
+                i.putExtra("description", description);
+
+                // Indica que ha dados no retorno
+                setResult(Activity.RESULT_OK, i);
+                finish();
+
             }
         });
     }

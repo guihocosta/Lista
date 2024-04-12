@@ -13,10 +13,10 @@
         android:theme="@style/Theme.Lista"
         tools:targetApi="31">
         <activity
-            android:name="activity.NewItemActivity"
+            android:name="costa.omena.guilherme.activity.NewItemActivity"
             android:exported="false" />
         <activity
-            android:name="activity.MainActivity"
+            android:name="costa.omena.guilherme.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
