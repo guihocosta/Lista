@@ -44,16 +44,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Obtem o RecyclerView
         RecyclerView rvItens = findViewById(R.id.rvItens);
 
+        // Cria e seta o adapter
         myAdapter = new MyAdapter(this,itens);
         rvItens.setAdapter(myAdapter);
 
         rvItens.setHasFixedSize(true);
 
+        // Criando e setando gerenciador do Layout
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         rvItens.setLayoutManager(layoutManager);
 
+        // Linha que separa os itens
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvItens.getContext(), DividerItemDecoration.VERTICAL);
         rvItens.addItemDecoration(dividerItemDecoration);
     }
