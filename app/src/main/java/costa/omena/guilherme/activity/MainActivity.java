@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView rvItens = findViewById(R.id.rvItens);
 
         // Cria e seta o adapter
+        // Ensina o RecyclerView a construir e preenche a lista
         myAdapter = new MyAdapter(this,itens);
         rvItens.setAdapter(myAdapter);
 
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         rvItens.addItemDecoration(dividerItemDecoration);
     }
 
+    // Metodo chamado quando o resultado é retornado
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -78,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 // Adicionando na Array de itens
                 itens.add(myItem);
 
+                // Notifica o adapter de que a lista foi alterado
                 myAdapter.notifyItemInserted(itens.size()-1);
             }
         }

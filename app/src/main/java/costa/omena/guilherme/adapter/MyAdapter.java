@@ -24,16 +24,20 @@ public class MyAdapter extends RecyclerView.Adapter {
         this.itens = itens;
     }
 
+    // Cria o layout
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         // Inflador serve para ler arquivo xml do item e criar os elementos de interface
         LayoutInflater inflater = LayoutInflater.from(mainActivity);
+
+        // Recebe o constraint layout
         View v = inflater.inflate(R.layout.item_list, parent, false);
         return new MyViewHolder(v);
     }
 
+    // Preenche o layout
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         // Indica qual elemento da lista deve ser usado para preencher o item

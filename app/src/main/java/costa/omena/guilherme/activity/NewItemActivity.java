@@ -73,7 +73,7 @@ public class NewItemActivity extends AppCompatActivity {
                     return;
                 }
 
-                // Intencao para voltar a outra tela
+                // Intencao para guardar os resultados a serem enviados
                 Intent i = new Intent();
 
                 // Setando os dados
@@ -83,6 +83,8 @@ public class NewItemActivity extends AppCompatActivity {
 
                 // Indica que ha dados no retorno
                 setResult(Activity.RESULT_OK, i);
+
+                // Finaliza a tela, voltando para a tela que chamou
                 finish();
 
             }
@@ -93,7 +95,7 @@ public class NewItemActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        // Verifica a chamada do StartActivityForResult, se e a mesma
+        // Verifica a chamada do StartActivityForResult, se e a mesma referente a escolha de imagem
         if (requestCode == PHOTO_PICKER_REQUEST) {
 
             // Verifica se a Activity de destino retornou com sucesso ou nao
