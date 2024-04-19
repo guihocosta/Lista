@@ -28,7 +28,7 @@ public class MyAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        // Inflador e para ler arquivo xml do item e criar os elementos de interface
+        // Inflador serve para ler arquivo xml do item e criar os elementos de interface
         LayoutInflater inflater = LayoutInflater.from(mainActivity);
         View v = inflater.inflate(R.layout.item_list, parent, false);
         return new MyViewHolder(v);

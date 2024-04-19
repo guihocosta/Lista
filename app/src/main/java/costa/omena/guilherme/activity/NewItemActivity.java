@@ -37,6 +37,8 @@ public class NewItemActivity extends AppCompatActivity {
 
                 // Selecionando somente as imagens
                 photoPickerIntent.setType("image/*");
+
+                // Intenção que espera um resultado (a foto)
                 startActivityForResult(photoPickerIntent, PHOTO_PICKER_REQUEST);
             }
         });
@@ -57,6 +59,7 @@ public class NewItemActivity extends AppCompatActivity {
                 EditText etTitle = findViewById(R.id.etTitle);
                 String title = etTitle.getText().toString();
 
+                //Casos em que o usuario deixou algum campo vazio
                 if (title.isEmpty()){
                     Toast.makeText(NewItemActivity.this, "É necessário inserir um título", Toast.LENGTH_LONG).show();
                     return;
@@ -98,7 +101,11 @@ public class NewItemActivity extends AppCompatActivity {
 
                 // Recebe os dados retornados pela Activity
                 photoSelected = data.getData();
+
+                // Obtem o ImageView
                 ImageView imvfotoPreview = findViewById(R.id.imvPhotoPreview);
+
+                // Seta a imagem no ImageView
                 imvfotoPreview.setImageURI(photoSelected);
 
             }
