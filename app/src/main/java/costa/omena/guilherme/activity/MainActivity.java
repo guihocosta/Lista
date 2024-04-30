@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-
+                // Guarda as ViewModel
                 MainActivityViewModel vm = new ViewModelProvider(this).get(MainActivityViewModel.class);
                 List<MyItem> itens = vm.getItens();
 
