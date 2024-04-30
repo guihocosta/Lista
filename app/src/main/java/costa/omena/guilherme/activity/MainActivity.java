@@ -2,23 +2,29 @@ package costa.omena.guilherme.activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
 import costa.omena.guilherme.adapter.MyAdapter;
 import costa.omena.guilherme.lista.R;
+import costa.omena.guilherme.model.MainActivityViewModel;
 import costa.omena.guilherme.model.MyItem;
+import costa.omena.guilherme.util.Util;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Obtem o RecyclerView
         RecyclerView rvItens = findViewById(R.id.rvItens);
+        MainActivityViewModel vm = new ViewModelProvider(this).get(MainActivityViewModel.class);
+        List<MyItem> itens = vm.getItens();
 
         // Cria e seta o adapter
         // Ensina o RecyclerView a construir e preenche a lista
@@ -75,7 +83,24 @@ public class MainActivity extends AppCompatActivity {
                 MyItem myItem = new MyItem();
                 myItem.title = data.getStringExtra("title");
                 myItem.description = data.getStringExtra("description");
-                myItem.photo = data.getData();
+
+                // Pega o endereco da imagem
+                Uri selectedPhotoURI = data.getData();
+
+                // Pega a imagem, a partir do endereco
+                try {
+                    Bitmap photo = Util.getBitmap(MainActivity.this, selectedPhotoURI,100,100);
+                    myItem.photo = photo;
+                }
+
+                // Trata o erro de arquivo não encontrado
+                catch (FileNotFoundException e){
+                    e.printStackTrace();
+                }
+
+
+                MainActivityViewModel vm = new ViewModelProvider(this).get(MainActivityViewModel.class);
+                List<MyItem> itens = vm.getItens();
 
                 // Adicionando na Array de itens
                 itens.add(myItem);

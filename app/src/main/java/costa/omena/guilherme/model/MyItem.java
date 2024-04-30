@@ -1,11 +1,11 @@
 package costa.omena.guilherme.model;
 
-import android.net.Uri;
+import android.graphics.Bitmap;
 
 public class MyItem {
 
     // Declarando as variaveis
-    public Uri photo;
+    public Bitmap photo;
     public String title;
     public String description;
 

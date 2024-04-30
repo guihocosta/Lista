@@ -2,6 +2,7 @@ package costa.omena.guilherme.activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import costa.omena.guilherme.lista.R;
+import costa.omena.guilherme.model.NewItemActivityViewModel;
 
 public class NewItemActivity extends AppCompatActivity {
 
@@ -26,6 +28,14 @@ public class NewItemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_item);
+
+        NewItemActivityViewModel vm = new ViewModelProvider(this).get(NewItemActivityViewModel.class);
+        Uri selectedPhotoLocation = vm.getSelectPhotoLocation();
+
+        if (selectedPhotoLocation != null){
+            ImageView imgfotoPreview = findViewById(R.id.imvPhotoPreview);
+            imgfotoPreview.setImageURI(selectedPhotoLocation);
+        }
 
         ImageButton imgCI = findViewById(R.id.imbCl);
         imgCI.setOnClickListener(new View.OnClickListener() {
@@ -109,6 +119,9 @@ public class NewItemActivity extends AppCompatActivity {
 
                 // Seta a imagem no ImageView
                 imvfotoPreview.setImageURI(photoSelected);
+
+                NewItemActivityViewModel vm = new ViewModelProvider(this).get(NewItemActivityViewModel.class);
+                vm.setSelectPhotoLocation(photoSelected);
 
             }
         }
